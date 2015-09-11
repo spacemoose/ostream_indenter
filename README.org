@@ -29,8 +29,7 @@ as well:
   - http://stackoverflow.com/questions/25216993/c-indenting-output-class-inheriting-ofstream
   - http://stackoverflow.com/questions/28271898/mutable-flags-on-a-stdfacet-object
   - http://stackoverflow.com/questions/799599/c-custom-stream-manipulator-that-changes-next-item-on-stream/799877#799877
-  -
-    http://stackoverflow.com/questions/1391746/how-to-easily-indent-output-to-ofstream
+  - http://stackoverflow.com/questions/1391746/how-to-easily-indent-output-to-ofstream
 
 
 ** The dream:
@@ -109,4 +108,6 @@ like this.
 
    - benchmarking.
    - optimization.
+   - A custom ostream operator that allows me to work more cleanly,
+     and support prettier formatting options.
    - Any ideas?
