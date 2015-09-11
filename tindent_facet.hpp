@@ -1,3 +1,6 @@
+/// @file
+/// Doesn't even compile atm -- playing with a templated version.
+
 #pragma once
 
 #include <locale>
