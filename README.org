@@ -93,6 +93,7 @@ like this.
         a new fact is created, a locale is created with that facet,
         and the current stream is imbued with that locale.
 
+** So?
 
 	This probably means the implementation is pretty inefficient, but
     if the indentation level is zero and you don't call any pushes,
