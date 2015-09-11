@@ -38,6 +38,7 @@ void trivial()
 	/// This probably has to be called once for every program:
     // http://stackoverflow.com/questions/26387054/how-can-i-use-stdimbue-to-set-the-locale-for-stdwcout
 	std::ios_base::sync_with_stdio(false);
+
 	std::cout << "I want to push indentation levels:\n" << indent_manip::push
 			  << "To arbitrary depths\n" << indent_manip::push
 			  << "and pop them\n" << indent_manip::pop

@@ -130,15 +130,6 @@ public:
 		oref.imbue(std::locale(oref.getloc(), new indent_facet(start_level)));
 	}
 
-
-
-
-/*	/// Set both the stream and the RAII guard to zero.
-	void clear()
-	{
-		oref.iword(index) = 0;
-		start_level=0;
-		}*/
 private:
 	std::ostream& oref;
 	 int start_level;
