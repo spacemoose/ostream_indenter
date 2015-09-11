@@ -1,4 +1,16 @@
-                   GNU LESSER GENERAL PUBLIC LICENSE
+This library is licensed under the lgpl.  Roughly speaking this means
+you can use it a proprietary project as long as you
+
+   1.  Credit the library.
+   2.  Share any improvement you make to the library.  You can do that by
+       contributing a pull request to the github site.
+
+A good plain language description of the requirements of the LGPL is found
+here:
+http://eigen.tuxfamily.org/index.php?title=Licensing_FAQ&oldid=1117#General_licensing_questions
+
+
+GNU LESSER GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
  Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
