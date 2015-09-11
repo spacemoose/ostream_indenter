@@ -4,22 +4,22 @@
   outputing informatoin regarding a data structure, and I'd like the
   indentation level to reflect the structure of the data.  Eg:
 
-#+BEGIN_QUOTE
+#+BEGIN_SRC
       Foo
         bar1
         bar2
         bar3
-#+END_QUOTE
+#+END_SRC
 
 But if Foo was in Boo, it should look like this:
 
-#+BEGIN_QUOTE
+#+BEGIN_SRC
    Boo
       Foo
         bar1
         bar2
         bar3
-#+END_QUOTE
+#+END_SRC
 
 I've cobbled together various solutions to this, but I thought it
 should be possible to create iostream manipulators, or use a facet, or
@@ -51,17 +51,13 @@ as well:
 
    and get:
 
-#+BEGIN_QUOTE
+#+BEGIN_SRC
 I want to push indentation levels:
-
 	To arbitrary depths
-
 		and pop them
-
 	back down
-
 like this.
-#+END_QUOTE
+#+END_SRC
 
 
 ** The reality
