@@ -1,4 +1,4 @@
-* What is this
+* What is this?
 
   I often want to create nested indentation in my output.  Maybe I'm
   outputing informatoin regarding a data structure, and I'd like the
