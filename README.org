@@ -104,8 +104,9 @@ like this.
     in hearing if anyone more knowledgeable sees any safety issues
     with the current implementation.
 
-** Future work
 
+** What's next?
+   - line wrapping
    - benchmarking.
    - optimization.
    - A custom ostream operator that allows me to work more cleanly,

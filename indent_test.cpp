@@ -7,8 +7,7 @@
 #include "indent_facet.hpp"
 
 
-
-void demo()
+void demo1()
 {
 	indent_manip::raii_guard rg(std::cout);
 	std::cout << "<DEMO START>\n"
@@ -46,18 +45,14 @@ void trivial()
 			  << "like this.\n" << indent_manip::pop;
 }
 
-int main()
+void indent_demo()
 {
-	trivial();
-
-
-
-	indent_manip::raii_guard rg (std::cout);
+		indent_manip::raii_guard rg (std::cout);
 	std::cout << "Here I call demo starting at zero indentation level:\n\n";
-	demo();
+	demo1();
 	std::cout << indent_manip::push
 			  << "\n\nNow within an indent level:\n";
-	demo();
+	demo1();
 
 	std::cout << "Demo left the indentation level where it found it.\n"
 			  << indent_manip::clear << "Clear pust me at zero.\n";
@@ -77,7 +72,12 @@ int main()
 	}
 	std::cout << indent_manip::clear
 			  << "I can also call clear to make sure I'm at zero at any particular point.\n";
+}
 
 
+int main()
+{
+	trivial();
+	indent_demo();
 
 }

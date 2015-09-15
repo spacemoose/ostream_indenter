@@ -30,7 +30,7 @@ protected:
 	virtual bool do_always_noconv() const throw() override {
 		return m_indentation_level==0;
 	}
-	unsigned int m_indentation_level = 0;
+	int m_indentation_level = 0;
 
 };
 
@@ -113,8 +113,8 @@ class raii_guard
 {
 public:
 	raii_guard(std::ostream& os):
-		start_level(os.iword(index)),
-		oref(os)
+		oref(os),
+		start_level(os.iword(index))
 	{}
 
 	~raii_guard()
@@ -132,7 +132,7 @@ public:
 
 private:
 	std::ostream& oref;
-	 int start_level;
+	int start_level;
 };
 
 }
