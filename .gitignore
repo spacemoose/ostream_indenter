@@ -1,1 +1,3 @@
 *.out
+.emacs-saves/
+indenter
