@@ -4,27 +4,27 @@
   outputing informatoin regarding a data structure, and I'd like the
   indentation level to reflect the structure of the data.  Eg:
 
-#+BEGIN_SRC
+  #+BEGIN_SRC
       Foo
         bar1
         bar2
         bar3
-#+END_SRC
+  #+END_SRC
 
-But if Foo was in Boo, it should look like this:
+  But if Foo was in Boo, it should look like this:
 
-#+BEGIN_SRC
+  #+BEGIN_SRC
    Boo
       Foo
         bar1
         bar2
         bar3
-#+END_SRC
+  #+END_SRC
 
-I've cobbled together various solutions to this, but I thought it
-should be possible to create iostream manipulators, or use a facet, or
-something like that.  It seems a lot of other people face this isssue
-as well:
+  I've cobbled together various solutions to this, but I thought it
+  should be possible to create iostream manipulators, or use a facet, or
+  something like that.  It seems a lot of other people face this isssue
+  as well:
 
   - http://stackoverflow.com/questions/25216993/c-indenting-output-class-inheriting-ofstream
   - http://stackoverflow.com/questions/28271898/mutable-flags-on-a-stdfacet-object
@@ -36,7 +36,7 @@ as well:
 
    I'd like to type:
 
-#+BEGIN_SRC C++
+   #+BEGIN_SRC C++
 	/// This probably has to be called once for every program:
     // http://stackoverflow.com/questions/26387054/how-can-i-use-stdimbue-to-set-the-locale-for-stdwcout
 	std::ios_base::sync_with_stdio(false);
@@ -46,17 +46,17 @@ as well:
 			  << "back down\n" << indent_manip::pop
               << "like this.\n"
 
-#+END_SRC
+   #+END_SRC
 
    and get:
 
-#+BEGIN_SRC
+   #+BEGIN_SRC
 I want to push indentation levels:
 	To arbitrary depths
 		and pop them
 	back down
 like this.
-#+END_SRC
+   #+END_SRC
 
 
 ** The reality
@@ -75,40 +75,39 @@ like this.
 
    The problem is:
 
-	1. I need to call a facet that is called on every string, which
-       afaik means I have to use codecvt.
-	2. I need the indentation level  to persist, which means using iosbase::iword.
-	3. codecvt doesn't have a reference to iosbase anywhere.
+	    1. I need to call a facet that is called on every string, which
+	       afaik means I have to use codecvt.
+	       2. I need the indentation level  to persist, which means using iosbase::iword.
+	       3. codecvt doesn't have a reference to iosbase anywhere.
 
 
-    Combine all that with the fact that facets have to be constant
-    objects, and you get a kind of tricky problem.  I solved it with a
-    dirty trick:
+	    Combine all that with the fact that facets have to be constant
+	    objects, and you get a kind of tricky problem.  I solved it with a
+	    dirty trick:
 
-	  - I use iword to keep track of the indentation level, since I
-        get stream tracking for free that way.  If I was only dealing
-        with a single stream it would useless iformation.
-	  - Whenever indent_manip::push is called, the iword is increment,
-        a new fact is created, a locale is created with that facet,
-        and the current stream is imbued with that locale.
+	    - I use iword to keep track of the indentation level, since I
+            get stream tracking for free that way.  If I was only dealing
+            with a single stream it would useless iformation.
+	    - Whenever indent_manip::push is called, the iword is increment,
+            a new fact is created, a locale is created with that facet,
+            and the current stream is imbued with that locale.
 
 ** So?
 
-	This probably means the implementation is pretty inefficient, but
-    if the indentation level is zero and you don't call any pushes,
-    you should get your usual performance.  Real penalties probably
-    occur only with pushes.
+   This probably means the implementation is pretty inefficient, but
+   if the indentation level is zero and you don't call any pushes,
+   you should get your usual performance.  Real penalties probably
+   occur only with pushes.
 
-    I will experiment with caching the locales at a later date to see
-    if that helps with the performance impact, but I'm more interested
-    in hearing if anyone more knowledgeable sees any safety issues
-    with the current implementation.
+   I will experiment with caching the locales at a later date to see
+   if that helps with the performance impact, but I'm more interested
+   in hearing if anyone more knowledgeable sees any safety issues
+   with the current implementation.
 
 
-** What's next?
-   - line wrapping
-   - benchmarking.
-   - optimization.
-   - A custom ostream operator that allows me to work more cleanly,
-     and support prettier formatting options.
-   - Any ideas?
+* What's next?
+  - line wrapping
+  - benchmarking.
+  - optimization.
+  - A custom streambuf instead?
+  - Any ideas?
