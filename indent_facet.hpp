@@ -34,7 +34,7 @@ protected:
 
 };
 
-indent_facet::result indent_facet::do_out(state_type &need_indentation,
+inline indent_facet::result indent_facet::do_out(state_type &need_indentation,
 	const intern_type *from, const intern_type *from_end, const intern_type *&from_next,
 	extern_type *to, extern_type *to_end, extern_type *&to_next
 	) const
@@ -84,14 +84,14 @@ namespace  indent_manip{
 
 static const int index = std::ios_base::xalloc();
 
-static std::ostream & push(std::ostream& os)
+inline static std::ostream & push(std::ostream& os)
 {
 	auto ilevel = ++os.iword(index);
 	os.imbue(std::locale(os.getloc(), new indent_facet(ilevel)));
 	return os;
 }
 
-std::ostream& pop(std::ostream& os)
+inline std::ostream& pop(std::ostream& os)
 {
 	auto ilevel = (os.iword(index)>0) ? --os.iword(index) : 0;
 	os.imbue(std::locale(os.getloc(), new indent_facet(ilevel)));
@@ -99,7 +99,7 @@ std::ostream& pop(std::ostream& os)
 }
 
 /// Clears the ostream indentation set, but NOT the raii_guard.
-std::ostream& clear(std::ostream& os)
+inline std::ostream& clear(std::ostream& os)
 {
 	os.iword(index) = 0;
 	os.imbue(std::locale(os.getloc(), new indent_facet(0)));
